@@ -1,192 +1,95 @@
-🧩 Problem Understanding
+# Find the Second Largest Element in an Array
 
+Given an array of positive integers `arr[]`, return the second largest element from the array. If the second largest element doesn't exist then return `-1`.
 
-Given an array of positive integers arr[], return the second largest element from the array. If the second largest element doesn't exist then return -1.
+Note: The second largest element must be different from the largest element.
 
-Note: The second largest element should not be equal to the largest element.
+## Examples
 
+- Input: `arr = [12, 35, 1, 10, 34, 1]`  
+  Output: `34`  
+  Explanation: The largest element is `35` and the second largest element is `34`.
 
-Input: arr[] = [12, 35, 1, 10, 34, 1]
-Output: 34
-Explanation: The largest element of the array is 35 and the second largest element is 34.
+- Input: `arr = [10, 5, 10]`  
+  Output: `5`  
+  Explanation: The largest element is `10` and the second largest element is `5`.
 
-Input: arr[] = [10, 5, 10]
-Output: 5
-Explanation: The largest element of the array is 10 and the second largest element is 5.
+- Input: `arr = [10, 10, 10]`  
+  Output: `-1`  
+  Explanation: All elements are equal to `10`, so a second largest (different) element does not exist.
 
-Input: arr[] = [10, 10, 10]
-Output: -1
-Explanation: The largest element of the array is 10 and the second largest element does not exist.
+---
 
+## Goal
 
+- Avoid sorting (which is unnecessary and slower).
+- Scan the array only once (single pass).
+- Keep track of:
+  - the largest number found so far
+  - the second largest number found so far
 
-Explanation:
-We are given an array of positive integers.
+This yields an efficient solution: O(n) time and O(1) extra space.
 
-Our task is to:
+---
 
-Find the second largest element
+## Python Solution
 
-The second largest must be different from the largest
-
-If it does not exist, return -1
-
-Example
-Input:  [12, 35, 1, 10, 34, 1]
-Largest = 35
-Second Largest = 34
-Output = 34
-
-🚀 Goal of the Solution
-
-We want to:
-
-Avoid sorting (sorting is slower and unnecessary)
-
-Scan the array only once
-
-Keep track of:
-
-the largest number
-
-the second largest number
-
-This gives us the most efficient solution.
-
-🧠 Code (For Reference)
+```python
 class Solution:
     def getSecondLargest(self, arr):
-        
         if len(arr) < 2:
             return -1
-        
+
         largest = -1
         second_largest = -1
-        
+
         for num in arr:
             if num > largest:
                 second_largest = largest
                 largest = num
             elif num != largest and num >= second_largest:
                 second_largest = num
-                
+
         return second_largest
+```
 
-🔍 Step-by-Step Explanation
-1️⃣ Function Definition
-def getSecondLargest(self, arr):
+---
 
+## Step-by-step Explanation
 
-This function receives:
+1. Function definition:
+   - `def getSecondLargest(self, arr):`
+   - `arr` is the list of integers. `self` is present because this is written as a class method (typical for platforms like GFG/LeetCode).
 
-arr → a list of integers
+2. Check array length:
+   - If `len(arr) < 2`, return `-1` because a second largest value cannot exist.
 
-self is used because this method belongs to a class (required in platforms like GFG / LeetCode)
+3. Initialize:
+   - `largest = -1`
+   - `second_largest = -1`
+   - Using `-1` is safe because the input is positive integers.
 
-2️⃣ Checking Array Length
-if len(arr) < 2:
-    return -1
+4. Loop through the array:
+   - For every number `num` in `arr`:
+     - If `num > largest`:
+       - Update `second_largest = largest` (old largest becomes the second largest)
+       - Update `largest = num`
+     - Else if `num != largest and num >= second_largest`:
+       - Update `second_largest = num` (consider as a candidate for second largest while ignoring duplicates of the largest)
 
-What does len(arr) do?
+5. Return result:
+   - After the loop, return `second_largest`.
+   - If no valid second largest was found, it remains `-1`.
 
-len() returns the number of elements in the list
+---
 
-Example:
+## Complexity
 
-len([5, 10, 20]) → 3
-len([10]) → 1
+| Metric          | Value              |
+|-----------------|--------------------|
+| Time Complexity | O(n) — single pass |
+| Space Complexity| O(1) — constant    |
 
-Why this check?
+---
 
-To have a second largest, we need at least 2 elements
-
-If not, the answer is impossible → return -1
-
-3️⃣ Initializing Variables
-largest = -1
-second_largest = -1
-
-
-These variables store:
-
-largest → the biggest number found so far
-
-second_largest → the second biggest number found so far
-
-Since the array contains positive integers, starting with -1 is safe.
-
-4️⃣ Looping Through the Array
-for num in arr:
-
-What this loop does:
-
-Goes one by one through every element in the array
-
-num represents the current element
-
-Example:
-
-arr = [12, 35, 1]
-num = 12 → then 35 → then 1
-
-5️⃣ Updating Largest and Second Largest
-Case 1: New Largest Found
-if num > largest:
-    second_largest = largest
-    largest = num
-
-
-What’s happening here?
-
-If the current number is greater than the existing largest
-
-The old largest becomes the second largest
-
-The current number becomes the new largest
-
-Example:
-
-largest = 20
-num = 35
-
-second_largest = 20
-largest = 35
-
-Case 2: Possible Second Largest
-elif num != largest and num >= second_largest:
-    second_largest = num
-
-
-This condition ensures:
-
-We ignore duplicates of the largest
-
-We only update second_largest if:
-
-num is smaller than largest
-
-but larger than the current second_largest
-
-Example:
-
-largest = 35
-second_largest = 12
-num = 34 → valid second largest
-
-6️⃣ Final Result
-return second_largest
-
-
-After the loop finishes
-
-second_largest contains the answer
-
-If no valid second largest was found → it remains -1
-
-⏱️ Time & Space Complexity
-Metric	Value
-Time Complexity	O(n) (single loop)
-Space Complexity	O(1) (no extra memory)
-
-
-From GFG - 360
+Source: From GFG - 360
