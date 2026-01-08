@@ -896,8 +896,8 @@ assert arr12 == [5, 5, 5, 5]
 ║ ❌ Off-by-one in indices                       ║
 ╚════════════════════════════════════════════════╝
 ```
-```
 
+---
 ## 🔄 Algorithm Variations Comparison
 
 | Approach | Time | Space | Difficulty | Best For |
@@ -907,7 +907,9 @@ assert arr12 == [5, 5, 5, 5]
 | One-by-One | O(n×d) | O(1) | Easy | Small d |
 | Juggling | O(n) | O(1) | Hard | Interviews |
 | Block Swap | O(n) | O(1) | Hard | Theory |
-```
+---
+
+
 ```
 ### Common Interview Questions
 ```
@@ -963,3 +965,4 @@ Topics: Arrays, Two Pointers, Reversal Algorithm, In-Place Operations
 
 This comprehensive README provides everything needed to understand the array rotation algorithm using the reversal technique, including detailed dry runs, visual representations, edge case handling, common mistakes, and interview preparation tips.
 ```
+
